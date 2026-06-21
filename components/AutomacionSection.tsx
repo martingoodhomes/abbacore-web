@@ -304,7 +304,7 @@ export default function AutomacionSection() {
 
   return (
     <section ref={sectionRef}
-      style={{ position: 'relative', padding: '120px 0 140px', overflow: 'hidden', background: '#f0f4ff' }}>
+      style={{ position: 'relative', padding: 'clamp(60px,8vw,120px) 0 clamp(80px,10vw,140px)', overflow: 'hidden', background: '#f0f4ff' }}>
 
       {/* Dot grid */}
       <div style={{
@@ -318,7 +318,7 @@ export default function AutomacionSection() {
       <div style={{ position: 'absolute', bottom: -100, right: -100, pointerEvents: 'none', width: 500, height: 500, background: 'radial-gradient(ellipse, rgba(37,99,235,0.04) 0%, transparent 70%)' }} />
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.18) 30%, rgba(37,99,235,0.28) 50%, rgba(37,99,235,0.18) 70%, transparent)' }} />
 
-      <div ref={ref} style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
+      <div ref={ref} style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,40px)' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center" style={{ gap: 48, minHeight: 580 }}>
 
           {/* ── Text (dark text on light bg) ── */}

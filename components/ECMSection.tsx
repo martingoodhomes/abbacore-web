@@ -358,7 +358,7 @@ export default function ECMSection() {
   return (
     <section
       ref={sectionRef}
-      style={{ position: 'relative', padding: '120px 0 140px', overflow: 'hidden', background: '#020B2B' }}
+      style={{ position: 'relative', padding: 'clamp(60px,8vw,120px) 0 clamp(80px,10vw,140px)', overflow: 'hidden', background: '#020B2B' }}
     >
       {/* Dot grid */}
       <div style={{
@@ -373,7 +373,7 @@ export default function ECMSection() {
       <div style={{ position: 'absolute', top: -150, right: -150, pointerEvents: 'none', width: 700, height: 700, background: 'radial-gradient(ellipse, rgba(37,99,235,0.18) 0%, transparent 65%)' }} />
       <div style={{ position: 'absolute', bottom: -100, left: -100, pointerEvents: 'none', width: 500, height: 500, background: 'radial-gradient(ellipse, rgba(37,99,235,0.10) 0%, transparent 70%)' }} />
 
-      <div ref={ref} style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
+      <div ref={ref} style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,40px)' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center" style={{ gap: 48, minHeight: 580 }}>
 
           {/* ── Left: Text ── */}

@@ -70,7 +70,7 @@ export default function CapturaSection() {
   return (
     <section
       ref={sectionRef}
-      style={{ position: 'relative', padding: '120px 0 140px', overflow: 'hidden', background: '#f0f4fc' }}
+      style={{ position: 'relative', padding: 'clamp(60px,8vw,120px) 0 clamp(80px,10vw,140px)', overflow: 'hidden', background: '#f0f4fc' }}
     >
       {/* Dot grid */}
       <div style={{
@@ -88,7 +88,7 @@ export default function CapturaSection() {
       {/* Top separator */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.18) 30%, rgba(37,99,235,0.28) 50%, rgba(37,99,235,0.18) 70%, transparent)' }} />
 
-      <div ref={ref} style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
+      <div ref={ref} style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,40px)' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center" style={{ gap: 48, minHeight: 560 }}>
 
           {/* ── Left: Text ── */}

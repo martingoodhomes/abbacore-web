@@ -4,7 +4,7 @@ import PartnersSection from '@/components/PartnersSection'
 import CapturaSection from '@/components/CapturaSection'
 import ECMSection from '@/components/ECMSection'
 import AutomacionSection from '@/components/AutomacionSection'
-import CRMSection from '@/components/CRMSection'
+import CalidadSection from '@/components/CalidadSection'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
 
@@ -17,7 +17,7 @@ export default function Home() {
         <CapturaSection />
         <ECMSection />
         <AutomacionSection />
-        <CRMSection />
+        <CalidadSection />
         <PartnersSection />
         <CTASection />
       </main>

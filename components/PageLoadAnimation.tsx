@@ -3,12 +3,17 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function PageLoadAnimation() {
-  const [visible, setVisible] = useState(true)
+  const [mounted, setMounted] = useState(false)
+  const [visible,  setVisible]  = useState(true)
 
   useEffect(() => {
+    setMounted(true)
     const t = setTimeout(() => setVisible(false), 700)
     return () => clearTimeout(t)
   }, [])
+
+  // Don't render the overlay in SSR — prevents a black flash in production
+  if (!mounted) return null
 
   return (
     <AnimatePresence>

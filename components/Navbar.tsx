@@ -128,10 +128,10 @@ export default function Navbar() {
             src="/images/ST.png"
             alt="AbbaCore"
             style={{
-              height: 120,
+              height: 138,
               width: 'auto',
               display: 'block',
-              transform: 'translateX(24px) translateY(6px)',
+              transform: 'translateX(4px) translateY(6px)',
               filter: onDark ? 'brightness(0) invert(1)' : 'none',
               transition: 'filter 0.3s ease',
             }}

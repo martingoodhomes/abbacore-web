@@ -3,7 +3,6 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, ChevronRight, ScanLine, FolderOpen, Zap, Smartphone } from 'lucide-react'
 import Link from 'next/link'
 import { useRef, useEffect, type CSSProperties } from 'react'
-import Image from 'next/image'
 
 const PILLARS = [
   { id: 'scan', Icon: ScanLine,   label: 'Captura Digital',  color: '#2563eb', href: '/productos/escaneres'                    },
@@ -251,15 +250,24 @@ function EcosystemVisual() {
             background: 'radial-gradient(ellipse, rgba(255,255,255,0.42) 0%, transparent 100%)',
             filter: 'blur(5px)', pointerEvents: 'none',
           }} />
-          {/* Logo */}
+          {/* Logo — inline SVG so it's identical in every environment */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <Image
-              src="/images/Logo 1.png"
-              alt="AbbaCore"
-              fill
-              className="object-contain p-3"
-              style={{ filter: 'brightness(0) invert(1)', opacity: 0.96 }}
-            />
+            <svg
+              width="72" height="68"
+              viewBox="0 0 100 95"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ opacity: 0.92 }}
+            >
+              <path
+                d="M42 0 Q32 0 32 8 L0 90 Q0 95 6 95 L35 95 L50 14 L65 95 L94 95 Q100 95 100 90 L68 8 Q68 0 58 0 Z"
+                fill="rgba(255,255,255,0.95)"
+              />
+              <polygon
+                points="50,46 59,64 50,84 41,64"
+                fill="#93c5fd"
+              />
+            </svg>
           </div>
         </motion.div>
       </div>
@@ -413,7 +421,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
+      <div className="relative z-10" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,40px)' }}>
         <div className="grid grid-cols-1 md:grid-cols-2 items-center" style={{ gap: 48, minHeight: 'calc(100svh - 80px)', padding: '64px 0' }}>
 
           {/* ── Left: Text ── */}
