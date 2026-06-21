@@ -1,0 +1,377 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  background: #ffffff;
+}
+
+body {
+  background: #ffffff;
+}
+
+/* ── Thin scrollbar ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37,99,235,0.2) transparent;
+}
+*::-webkit-scrollbar { width: 5px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: rgba(37,99,235,0.2);
+  border-radius: 100px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(37,99,235,0.4);
+}
+
+/* ── Glassmorphism nav ── */
+.glass-nav {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Hero section base ── */
+.apple-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(240, 237, 239, 0.5) 0%, rgba(252, 248, 251, 1) 100%);
+}
+
+/* ── CTA section mesh ── */
+.ethereal-mesh {
+  background-color: #001849;
+  background-image:
+    radial-gradient(at 0% 0%, hsla(217, 100%, 50%, 0.3) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(220, 100%, 40%, 0.5) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(230, 100%, 30%, 0.3) 0, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(260, 100%, 20%, 0.3) 0, transparent 50%),
+    radial-gradient(at 50% 100%, hsla(217, 100%, 50%, 0.4) 0, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(230, 100%, 30%, 0.3) 0, transparent 50%);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   AnimatedMesh — 6 independent orb animations.
+   Each uses a unique multi-stop path so movement feels organic.
+   Speeds: 9 s (fastest accent) → 22 s (slowest large orb).
+───────────────────────────────────────────────────────────── */
+
+/* Orb 1 — large top-left, slow wide drift */
+@keyframes mesh-a {
+  0%,  100% { transform: translate(  0px,   0px) scale(1.00); }
+  20%        { transform: translate( 70px,  30px) scale(1.04); }
+  45%        { transform: translate( 40px,  90px) scale(0.96); }
+  70%        { transform: translate(-50px,  60px) scale(1.03); }
+  88%        { transform: translate(-20px, -20px) scale(0.98); }
+}
+
+/* Orb 2 — top-right vivid tint, medium diagonal */
+@keyframes mesh-b {
+  0%,  100% { transform: translate(  0px,   0px) scale(1.00); }
+  30%        { transform: translate(-70px,  55px) scale(1.07); }
+  60%        { transform: translate(-25px, 100px) scale(0.95); }
+  80%        { transform: translate( 30px,  70px) scale(1.02); }
+}
+
+/* Orb 3 — center-left, very slow circle-ish */
+@keyframes mesh-c {
+  0%,  100% { transform: translate(  0px,   0px) scale(1.00); }
+  25%        { transform: translate(-60px, -45px) scale(1.05); }
+  50%        { transform: translate( 55px, -60px) scale(0.94); }
+  75%        { transform: translate( 30px,  50px) scale(1.06); }
+}
+
+/* Orb 4 — small dark accent, fastest, snappy */
+@keyframes mesh-d {
+  0%,  100% { transform: translate(  0px,   0px) scale(1.00); }
+  40%        { transform: translate( 80px, -55px) scale(1.10); }
+  75%        { transform: translate( 35px,  45px) scale(0.92); }
+}
+
+/* Orb 5 — bottom-right, medium, upward sweep */
+@keyframes mesh-e {
+  0%,  100% { transform: translate(  0px,   0px) scale(1.00); }
+  35%        { transform: translate(-85px, -50px) scale(1.06); }
+  65%        { transform: translate(-30px, -80px) scale(0.97); }
+  85%        { transform: translate( 20px, -30px) scale(1.03); }
+}
+
+/* Orb 6 — small center-right accent, tight loop */
+@keyframes mesh-f {
+  0%,  100% { transform: translate(  0px,   0px) scale(1.00); }
+  30%        { transform: translate( 45px,  55px) scale(1.12); }
+  60%        { transform: translate(-35px,  30px) scale(0.91); }
+  80%        { transform: translate( 10px, -25px) scale(1.05); }
+}
+
+.mesh-orb-a { animation: mesh-a 22s ease-in-out infinite; }
+.mesh-orb-b { animation: mesh-b 14s ease-in-out infinite; }
+.mesh-orb-c { animation: mesh-c 19s ease-in-out infinite; }
+.mesh-orb-d { animation: mesh-d  9s ease-in-out infinite; }
+.mesh-orb-e { animation: mesh-e 16s ease-in-out infinite; }
+.mesh-orb-f { animation: mesh-f 11s ease-in-out infinite; }
+
+/* ── Hide scrollbar on lineup scroll containers ── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Liquid Glass — iOS 26 / macOS Tahoe
+   All variants use position:relative + overflow:hidden on host.
+───────────────────────────────────────────────────────────── */
+
+/* Navbar — frosted glass over hero mesh */
+.liquid-glass-navbar {
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Mega menu panel — full-width frosted sheet */
+.liquid-glass-mega {
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge — on dark/gradient backgrounds (hero section) */
+.liquid-glass-badge {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.liquid-glass-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+/* Badge — on white/light backgrounds (inner page hero) */
+.liquid-glass-badge-light {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.liquid-glass-badge-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.22) 100%
+  );
+  pointer-events: none;
+}
+
+/* Secondary button — on dark/gradient backgrounds */
+.liquid-glass-btn {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.liquid-glass-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.liquid-glass-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  pointer-events: none;
+}
+
+/* Secondary button — on white/light backgrounds */
+.liquid-glass-btn-light {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.liquid-glass-btn-light:hover {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.liquid-glass-btn-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  pointer-events: none;
+}
+
+/* Apple lineup card — glass sheen on hover */
+.apple-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.07) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.apple-card:hover::after {
+  opacity: 1;
+}
+
+/* ── Dark section grid — reused across ProductGrid, WhyAbbaCore, Footer, etc. ── */
+.dark-grid-bg {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.038) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.038) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ── Glass card — dark variant ── */
+.glass-card-dark {
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+}
+
+.glass-card-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 55%);
+  pointer-events: none;
+}
+
+/* ── Glass input — dark variant ── */
+.glass-input-dark {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-input-dark::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.glass-input-dark:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(37, 99, 235, 0.6);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ── WhatsApp floating button ── */
+@keyframes wa-bounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-14px); }
+  60%  { transform: translateY(-6px); }
+  80%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.wa-bounce {
+  animation: wa-bounce 0.95s cubic-bezier(0.22, 1, 0.36, 1) 1.4s both;
+}
+
+.wa-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.65);
+  animation: wa-pulse 2.4s ease-out 2.4s infinite;
+}
+
+.wa-pulse-ring-2 {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.4);
+  animation: wa-pulse 2.4s ease-out 3.2s infinite;
+}
+
+/* ── Marquee (partners section) ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
