@@ -1,95 +1,78 @@
 'use client'
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import Image from 'next/image'
 
 type Partner = {
   id:          string
   label:       string
-  hoverColor:  string          // text + badge color on hover
-  hoverBorder: string          // inset border rgba
-  hoverShadow: string          // drop-shadow rgba
-  hoverGlow:   string          // text-shadow rgba
-  dotColor:    string          // primary dot rgba
-  dotColor2?:  string          // optional 2nd dot layer (Kodak red+orange)
-  bloomColor:  string          // radial vignette rgba
+  logo:        string
+  logoWidth:   number
+  logoHeight:  number
+  hoverBorder: string
+  hoverShadow: string
+  bloomColor:  string
+  filterOnHover?: string
 }
 
 const PARTNERS: Partner[] = [
   {
-    id: 'kodak', label: 'Kodak',
-    hoverColor:  '#CC0000',
-    hoverBorder: 'rgba(204,0,0,0.35)',
-    hoverShadow: 'rgba(204,0,0,0.15)',
-    hoverGlow:   'rgba(204,0,0,0.26)',
-    dotColor:    'rgba(204,0,0,0.18)',
-    dotColor2:   'rgba(255,69,0,0.12)',   // orange offset layer
-    bloomColor:  'rgba(204,0,0,0.07)',
-  },
-  {
-    id: 'asus', label: 'ASUS',
-    hoverColor:  '#00247D',
-    hoverBorder: 'rgba(0,36,125,0.35)',
-    hoverShadow: 'rgba(0,36,125,0.14)',
-    hoverGlow:   'rgba(0,36,125,0.22)',
-    dotColor:    'rgba(0,36,125,0.14)',
-    bloomColor:  'rgba(0,36,125,0.06)',
-  },
-  {
-    id: 'epson', label: 'Epson',
-    hoverColor:  '#2563eb',
-    hoverBorder: 'rgba(37,99,235,0.32)',
-    hoverShadow: 'rgba(29,78,216,0.14)',
-    hoverGlow:   'rgba(37,99,235,0.28)',
-    dotColor:    'rgba(37,99,235,0.14)',
-    bloomColor:  'rgba(37,99,235,0.07)',
-  },
-  {
-    id: 'laserfiche', label: 'Laserfiche',
-    hoverColor:  '#FF6600',
-    hoverBorder: 'rgba(255,102,0,0.35)',
-    hoverShadow: 'rgba(255,102,0,0.14)',
-    hoverGlow:   'rgba(255,102,0,0.26)',
-    dotColor:    'rgba(255,102,0,0.16)',
-    bloomColor:  'rgba(255,102,0,0.06)',
-  },
-  {
-    id: 'ricoh', label: 'RICOH',
-    hoverColor:  '#CC0000',
-    hoverBorder: 'rgba(204,0,0,0.35)',
-    hoverShadow: 'rgba(204,0,0,0.15)',
-    hoverGlow:   'rgba(204,0,0,0.26)',
-    dotColor:    'rgba(204,0,0,0.16)',
+    id: 'kodak', label: 'Kodak Alaris',
+    logo: '/products/software/kodak-alaris-logo.png',
+    logoWidth: 130, logoHeight: 48,
+    hoverBorder: 'rgba(204,0,0,0.30)',
+    hoverShadow: 'rgba(204,0,0,0.12)',
     bloomColor:  'rgba(204,0,0,0.06)',
   },
   {
+    id: 'asus', label: 'ASUS',
+    logo: '/images/partners/asus-logo.svg',
+    logoWidth: 120, logoHeight: 40,
+    hoverBorder: 'rgba(0,36,125,0.30)',
+    hoverShadow: 'rgba(0,36,125,0.10)',
+    bloomColor:  'rgba(0,36,125,0.05)',
+  },
+  {
+    id: 'epson', label: 'Epson',
+    logo: '/products/software/epson-logo.svg',
+    logoWidth: 120, logoHeight: 44,
+    hoverBorder: 'rgba(37,99,235,0.30)',
+    hoverShadow: 'rgba(29,78,216,0.12)',
+    bloomColor:  'rgba(37,99,235,0.06)',
+  },
+  {
+    id: 'laserfiche', label: 'Laserfiche',
+    logo: '/products/software/laserfiche-logo.png',
+    logoWidth: 130, logoHeight: 40,
+    hoverBorder: 'rgba(255,102,0,0.30)',
+    hoverShadow: 'rgba(255,102,0,0.12)',
+    bloomColor:  'rgba(255,102,0,0.05)',
+  },
+  {
+    id: 'ricoh', label: 'RICOH',
+    logo: '/products/software/ricoh-logo.svg',
+    logoWidth: 110, logoHeight: 44,
+    hoverBorder: 'rgba(204,0,0,0.30)',
+    hoverShadow: 'rgba(204,0,0,0.12)',
+    bloomColor:  'rgba(204,0,0,0.05)',
+  },
+  {
     id: 'kintone', label: 'kintone',
-    hoverColor:  '#FF4500',
-    hoverBorder: 'rgba(255,69,0,0.35)',
-    hoverShadow: 'rgba(255,69,0,0.15)',
-    hoverGlow:   'rgba(255,69,0,0.26)',
-    dotColor:    'rgba(255,69,0,0.16)',
-    bloomColor:  'rgba(255,69,0,0.06)',
+    logo: '/products/software/kintone-logo.svg',
+    logoWidth: 120, logoHeight: 40,
+    hoverBorder: 'rgba(255,69,0,0.30)',
+    hoverShadow: 'rgba(255,69,0,0.12)',
+    bloomColor:  'rgba(255,69,0,0.05)',
   },
   {
     id: 'brother', label: 'Brother',
-    hoverColor:  '#0072CE',
-    hoverBorder: 'rgba(0,114,206,0.35)',
-    hoverShadow: 'rgba(0,114,206,0.15)',
-    hoverGlow:   'rgba(0,114,206,0.30)',
-    dotColor:    'rgba(0,114,206,0.14)',
-    bloomColor:  'rgba(0,114,206,0.07)',
+    logo: '/images/partners/brother-logo.svg',
+    logoWidth: 130, logoHeight: 40,
+    hoverBorder: 'rgba(0,114,206,0.30)',
+    hoverShadow: 'rgba(0,114,206,0.12)',
+    bloomColor:  'rgba(0,114,206,0.06)',
   },
 ]
-
-const LOGO_STYLE = {
-  fontFamily:    'var(--font-montserrat), sans-serif',
-  fontWeight:    700,
-  fontSize:      18,
-  letterSpacing: '0.04em',
-  lineHeight:    1,
-  textTransform: 'uppercase' as const,
-  userSelect:    'none'       as const,
-}
 
 const CARD_H = 108
 
@@ -102,20 +85,6 @@ function PartnerCard({
 }) {
   const [hovered, setHovered] = useState(false)
 
-  const dotBg = partner.dotColor2
-    // Kodak: interleaved red + orange dots at 7px offset
-    ? `radial-gradient(circle, ${partner.dotColor} 1px, transparent 1px),
-       radial-gradient(circle, ${partner.dotColor2} 1px, transparent 1px)`
-    : `radial-gradient(circle, ${partner.dotColor} 1px, transparent 1px)`
-
-  const dotSize = partner.dotColor2
-    ? '14px 14px, 14px 14px'
-    : '14px 14px'
-
-  const dotPos = partner.dotColor2
-    ? '0 0, 7px 7px'
-    : '0 0'
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
@@ -123,7 +92,7 @@ function PartnerCard({
       transition={{ delay, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      style={{ flex: '1 1 0', minWidth: 0 }}
+      style={{ minWidth: 0 }}
     >
       <motion.div
         animate={{
@@ -138,33 +107,18 @@ function PartnerCard({
         }}
         transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
         style={{
-          position:       'relative',
-          height:          CARD_H,
-          borderRadius:    10,
-          overflow:        'hidden',
-          display:         'flex',
-          flexDirection:   'column',
-          alignItems:      'center',
-          justifyContent:  'center',
-          gap:             10,
-          cursor:          'default',
+          position:      'relative',
+          height:         CARD_H,
+          borderRadius:   10,
+          overflow:       'hidden',
+          display:        'flex',
+          alignItems:     'center',
+          justifyContent: 'center',
+          cursor:         'default',
+          padding:        '12px 16px',
         }}
       >
-        {/* Dot grid — brand-colored, optional dual layer */}
-        <motion.div
-          animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.30 }}
-          aria-hidden
-          style={{
-            position:        'absolute', inset: 0,
-            backgroundImage: dotBg,
-            backgroundSize:  dotSize,
-            backgroundPosition: dotPos,
-            pointerEvents:   'none',
-          }}
-        />
-
-        {/* Radial bloom — brand color, soft on white */}
+        {/* Radial bloom */}
         <motion.div
           animate={{ opacity: hovered ? 1 : 0 }}
           transition={{ duration: 0.30 }}
@@ -176,40 +130,21 @@ function PartnerCard({
           }}
         />
 
-        {/* Logo text */}
-        <motion.span
-          animate={{
-            color:      hovered ? partner.hoverColor : '#0d0f14',
-            textShadow: hovered
-              ? `0 0 18px ${partner.hoverGlow}, 0 0 36px ${partner.hoverGlow}`
-              : 'none',
-          }}
+        {/* Logo image */}
+        <motion.div
+          animate={{ opacity: hovered ? 1 : 0.55, scale: hovered ? 1.04 : 1 }}
           transition={{ duration: 0.28, ease: 'easeOut' }}
-          style={{ position: 'relative', zIndex: 1, ...LOGO_STYLE }}
+          style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          {partner.label}
-        </motion.span>
-
-        {/* Badge */}
-        <motion.span
-          animate={{
-            opacity: hovered ? 1 : 0,
-            y:       hovered ? 0 : 6,
-            color:   partner.hoverColor,
-          }}
-          transition={{ duration: 0.24, ease: 'easeOut' }}
-          style={{
-            position:      'relative', zIndex: 1,
-            fontFamily:    'var(--font-montserrat), sans-serif',
-            fontSize:      7.5, fontWeight: 700,
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase' as const,
-            opacity:       0,
-            whiteSpace:    'nowrap',
-          }}
-        >
-          Partner Certificado
-        </motion.span>
+          <Image
+            src={partner.logo}
+            alt={partner.label}
+            width={partner.logoWidth}
+            height={partner.logoHeight}
+            style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: 56 }}
+            unoptimized
+          />
+        </motion.div>
       </motion.div>
     </motion.div>
   )
@@ -238,7 +173,7 @@ export default function PartnersSection() {
         background: 'linear-gradient(90deg,transparent,rgba(37,99,235,0.12) 30%,rgba(37,99,235,0.18) 50%,rgba(37,99,235,0.12) 70%,transparent)',
       }} />
 
-      {/* Section-wide dot texture */}
+      {/* Dot texture */}
       <div aria-hidden style={{
         position:        'absolute', inset: 0, pointerEvents: 'none',
         backgroundImage: 'radial-gradient(circle, rgba(37,99,235,0.08) 1px, transparent 1px)',
@@ -247,7 +182,7 @@ export default function PartnersSection() {
 
       <div ref={ref} style={{
         position: 'relative',
-        maxWidth: 1160, margin: '0 auto', padding: '0 40px',
+        maxWidth: 1160, margin: '0 auto', padding: '0 clamp(16px,4vw,40px)',
       }}>
 
         <motion.p
@@ -265,7 +200,7 @@ export default function PartnersSection() {
           Tecnología respaldada por
         </motion.p>
 
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7" style={{ gap: 8 }}>
           {PARTNERS.map((p, i) => (
             <PartnerCard
               key={p.id}

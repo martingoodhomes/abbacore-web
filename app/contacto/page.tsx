@@ -9,8 +9,7 @@ import PageHero from '@/components/PageHero'
 const contactInfo = [
   { Icon: Phone,  label: 'Teléfono', value: '316 538 3437',                     href: 'tel:+573165383437' },
   { Icon: Phone,  label: 'Teléfono', value: '301 200 5752',                     href: 'tel:+573012005752' },
-  { Icon: Mail,   label: 'Email',    value: 'andres.casasbuenas@abba-core.com', href: 'mailto:andres.casasbuenas@abba-core.com' },
-  { Icon: Mail,   label: 'Email',    value: 'yimy.rodriguez@abba-core.com',     href: 'mailto:yimy.rodriguez@abba-core.com' },
+  { Icon: Mail,   label: 'Email',    value: 'info@abba-core.com',              href: 'mailto:info@abba-core.com' },
   { Icon: MapPin, label: 'Oficina',  value: 'Bogotá D.C., Colombia',            href: '#' },
 ]
 
@@ -99,10 +98,10 @@ export default function ContactoPage() {
             pointerEvents: 'none',
           }} />
 
-          <div style={{
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{
             position: 'relative', zIndex: 1,
-            maxWidth: 1200, margin: '0 auto', padding: '0 40px',
-            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'start',
+            maxWidth: 1200, margin: '0 auto', padding: '0 clamp(16px,4vw,40px)',
+            gap: 'clamp(40px,5vw,72px)', alignItems: 'start',
           }}>
 
             {/* ── Left: Form ──────────────────────────────────────────────────── */}
@@ -175,7 +174,7 @@ export default function ContactoPage() {
                     transition={{ duration: 0.28 }}
                     style={{ display: 'flex', flexDirection: 'column', gap: 18 }}
                   >
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 16 }}>
                       <Field label="Nombre *">
                         <input
                           type="text" name="nombre" required
@@ -198,7 +197,7 @@ export default function ContactoPage() {
                       </Field>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 16 }}>
                       <Field label="Email *">
                         <input
                           type="email" name="email" required
@@ -358,10 +357,10 @@ export default function ContactoPage() {
             pointerEvents: 'none',
           }} />
 
-          <div style={{
+          <div className="grid grid-cols-1 sm:grid-cols-3" style={{
             position: 'relative', zIndex: 1,
-            maxWidth: 1200, margin: '0 auto', padding: '0 40px',
-            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1,
+            maxWidth: 1200, margin: '0 auto', padding: '0 clamp(16px,4vw,40px)',
+            gap: 1,
           }}>
             {[
               { value: '500+', label: 'Empresas confían en nosotros' },

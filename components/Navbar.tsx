@@ -128,7 +128,7 @@ export default function Navbar() {
             src="/images/ST.png"
             alt="AbbaCore"
             style={{
-              height: 138,
+              height: 168,
               width: 'auto',
               display: 'block',
               transform: 'translateX(4px) translateY(6px)',

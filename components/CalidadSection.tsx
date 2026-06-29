@@ -7,17 +7,17 @@ import { ShieldCheck, ArrowRight, ChevronRight, FileCheck } from 'lucide-react'
 const NODES = [
   { id: 'doc', name: 'Control Docs',  val: '4,820', tag: 'Activo',     cx: 72, cy: 10, delay: 0.50, floatY: 3 },
   { id: 'aud', name: 'Auditorías',    val: '38',    tag: 'Programada', cx: 84, cy: 46, delay: 0.62, floatY: 3 },
-  { id: 'cap', name: 'CAPA Abiertas', val: '12',    tag: 'En proceso', cx: 28, cy: 86, delay: 0.74, floatY: 3 },
+  { id: 'cap', name: 'CAPA',          val: '98%',   tag: 'A TIEMPO',   cx: 28, cy: 86, delay: 0.74, floatY: 3 },
   { id: 'tra', name: 'Capacitación',  val: '94%',   tag: 'Activo',     cx: 72, cy: 86, delay: 0.86, floatY: 3 },
   { id: 'iso', name: 'ISO 13485',     val: 'Cert.', tag: 'Vigente',    cx: 16, cy: 46, delay: 0.98, floatY: 3 },
-  { id: 'fda', name: 'FDA 21 CFR',    val: 'Conf.', tag: 'Vigente',    cx: 28, cy: 10, delay: 1.10, floatY: 3 },
+  { id: 'fda', name: 'FDA 21 CFR',    val: '100%',  tag: 'Vigente',    cx: 28, cy: 10, delay: 1.10, floatY: 3 },
 ]
 
 const TAG_C: Record<string, { dot: string; text: string }> = {
-  'Activo':     { dot: '#6ee7b7', text: 'rgba(110,231,183,0.72)' },
-  'Programada': { dot: '#34d399', text: 'rgba(52,211,153,0.62)'  },
-  'En proceso': { dot: '#5eead4', text: 'rgba(94,234,212,0.58)'  },
-  'Vigente':    { dot: '#a7f3d0', text: 'rgba(167,243,208,0.68)' },
+  'Activo':     { dot: '#93c5fd', text: 'rgba(147,197,253,0.72)' },
+  'Programada': { dot: '#60a5fa', text: 'rgba(96,165,250,0.62)'  },
+  'A TIEMPO':   { dot: '#7dd3fc', text: 'rgba(125,211,252,0.72)' },
+  'Vigente':    { dot: '#bfdbfe', text: 'rgba(191,219,254,0.68)' },
 }
 
 const RAILS = NODES.map(n => ({ id: n.id, d: `M 50,50 L ${n.cx},${n.cy}` }))
@@ -31,12 +31,12 @@ const SPARKS = [
   { cx: 94, cy: 32, r: 0.32, op: 0.12 }, { cx: 42, cy: 94, r: 0.34, op: 0.16 },
 ]
 
-const ORB_G = 'radial-gradient(circle at 36% 26%, #6ee7b7 0%, #00A98F 26%, #008F78 52%, #065f46 80%, #022c22 100%)'
+const ORB_G = 'radial-gradient(circle at 36% 26%, #93c5fd 0%, #2563eb 26%, #1d4ed8 52%, #1e3a8a 80%, #0d2260 100%)'
 const ORB_SHD = [
   'inset 0 1.5px 0 rgba(255,255,255,0.16)',
   'inset 0 -1.5px 0 rgba(0,0,0,0.32)',
-  '0 8px 36px rgba(0,20,14,0.78)',
-  '0 0 36px rgba(0,169,143,0.42)',
+  '0 8px 36px rgba(2,11,29,0.78)',
+  '0 0 36px rgba(37,99,235,0.42)',
 ].join(', ')
 
 // ─── Particle ─────────────────────────────────────────────────────────────────
@@ -69,8 +69,8 @@ function QMSParticle({ sx, sy, ex, ey, phase }: {
 
   return (
     <>
-      <circle ref={lRef} r="0.48" fill="#6ee7b7" filter="url(#qms-pg)" cx={sx} cy={sy} opacity={0} />
-      <circle ref={tRef} r="0.26" fill="#a7f3d0" filter="url(#qms-pg)" cx={sx} cy={sy} opacity={0} />
+      <circle ref={lRef} r="0.48" fill="#93c5fd" filter="url(#qms-pg)" cx={sx} cy={sy} opacity={0} />
+      <circle ref={tRef} r="0.26" fill="#bfdbfe" filter="url(#qms-pg)" cx={sx} cy={sy} opacity={0} />
     </>
   )
 }
@@ -86,7 +86,6 @@ function QMSVisual({ inView }: { inView: boolean }) {
           width: 420,
         }}>
 
-        {/* SVG Layer 1 */}
         <svg className="absolute inset-0 pointer-events-none"
           style={{ width: '100%', height: '100%', overflow: 'visible', zIndex: 1 }}
           viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
@@ -112,29 +111,29 @@ function QMSVisual({ inView }: { inView: boolean }) {
           </defs>
 
           {SPARKS.map((s, i) => (
-            <motion.circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill="#6ee7b7"
+            <motion.circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill="#93c5fd"
               animate={{ opacity: [s.op, s.op * 0.22, s.op] }}
               transition={{ duration: 3.4 + i * 0.55, repeat: Infinity, ease: 'easeInOut', delay: i * 0.44 }}
             />
           ))}
 
-          <circle cx="50" cy="50" r="28" fill="rgba(0,169,143,0.28)" filter="url(#qms-bloom)" />
-          <circle cx="50" cy="50" r="14" fill="rgba(52,211,153,0.26)" filter="url(#qms-orbglow)" />
+          <circle cx="50" cy="50" r="28" fill="rgba(37,99,235,0.28)" filter="url(#qms-bloom)" />
+          <circle cx="50" cy="50" r="14" fill="rgba(96,165,250,0.26)" filter="url(#qms-orbglow)" />
 
           <motion.circle cx="50" cy="50" r="19"
-            fill="none" stroke="rgba(52,211,153,0.18)" strokeWidth="0.28" strokeDasharray="2.2 7"
+            fill="none" stroke="rgba(96,165,250,0.18)" strokeWidth="0.28" strokeDasharray="2.2 7"
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
             style={{ transformOrigin: '50px 50px' }}
           />
           <motion.circle cx="50" cy="50" r="34"
-            fill="none" stroke="rgba(0,169,143,0.10)" strokeWidth="0.24" strokeDasharray="1.6 6.4"
+            fill="none" stroke="rgba(37,99,235,0.10)" strokeWidth="0.24" strokeDasharray="1.6 6.4"
             animate={{ rotate: [0, -360] }}
             transition={{ duration: 52, repeat: Infinity, ease: 'linear' }}
             style={{ transformOrigin: '50px 50px' }}
           />
           <motion.circle cx="50" cy="50" r="46"
-            fill="none" stroke="rgba(0,169,143,0.05)" strokeWidth="0.18" strokeDasharray="0.8 9"
+            fill="none" stroke="rgba(37,99,235,0.05)" strokeWidth="0.18" strokeDasharray="0.8 9"
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
             style={{ transformOrigin: '50px 50px' }}
@@ -142,7 +141,7 @@ function QMSVisual({ inView }: { inView: boolean }) {
 
           {RAILS.map((rail, i) => (
             <motion.path key={`rg-${rail.id}`} d={rail.d}
-              stroke="rgba(0,169,143,0.20)" strokeWidth="2.0" fill="none" strokeLinecap="round"
+              stroke="rgba(37,99,235,0.20)" strokeWidth="2.0" fill="none" strokeLinecap="round"
               filter="url(#qms-rail)"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={inView ? { pathLength: 1, opacity: 1 } : {}}
@@ -151,7 +150,7 @@ function QMSVisual({ inView }: { inView: boolean }) {
           ))}
           {RAILS.map((rail, i) => (
             <motion.path key={`r-${rail.id}`} d={rail.d}
-              stroke="rgba(110,231,183,0.28)" strokeWidth="0.36" fill="none" strokeLinecap="round"
+              stroke="rgba(147,197,253,0.28)" strokeWidth="0.36" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={inView ? { pathLength: 1, opacity: 1 } : {}}
               transition={{ delay: 0.45 + i * 0.09, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
@@ -159,7 +158,7 @@ function QMSVisual({ inView }: { inView: boolean }) {
           ))}
           {RAILS.map((rail, i) => (
             <motion.path key={`d-${rail.id}`} d={rail.d}
-              stroke="rgba(167,243,208,0.38)" strokeWidth="0.46" fill="none" strokeLinecap="round"
+              stroke="rgba(191,219,254,0.38)" strokeWidth="0.46" fill="none" strokeLinecap="round"
               strokeDasharray="1.4 10"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={inView ? { pathLength: 1, opacity: 1, strokeDashoffset: [0, -11.4] } : {}}
@@ -197,14 +196,14 @@ function QMSVisual({ inView }: { inView: boolean }) {
             >
               <div style={{
                 position: 'absolute', inset: -22, borderRadius: '50%',
-                border: '1px solid rgba(0,169,143,0.14)',
-                boxShadow: '0 0 48px rgba(0,169,143,0.22), inset 0 0 48px rgba(0,169,143,0.06)',
+                border: '1px solid rgba(37,99,235,0.14)',
+                boxShadow: '0 0 48px rgba(37,99,235,0.22), inset 0 0 48px rgba(37,99,235,0.06)',
                 pointerEvents: 'none',
               }} />
               <div style={{
                 position: 'absolute', inset: -10, borderRadius: '50%',
-                border: '1px solid rgba(52,211,153,0.20)',
-                boxShadow: '0 0 20px rgba(0,169,143,0.28)',
+                border: '1px solid rgba(59,130,246,0.20)',
+                boxShadow: '0 0 20px rgba(37,99,235,0.28)',
                 pointerEvents: 'none',
               }} />
 
@@ -229,12 +228,12 @@ function QMSVisual({ inView }: { inView: boolean }) {
                 <div style={{
                   position: 'absolute', top: '7%', left: '10%',
                   width: '36%', height: '18%', borderRadius: '50%',
-                  background: 'radial-gradient(ellipse, rgba(255,255,255,0.26) 0%, rgba(167,243,208,0.06) 55%, transparent 100%)',
+                  background: 'radial-gradient(ellipse, rgba(255,255,255,0.26) 0%, rgba(191,219,254,0.06) 55%, transparent 100%)',
                   filter: 'blur(2.5px)', pointerEvents: 'none',
                 }} />
                 <div style={{
                   position: 'absolute', bottom: 0, left: 0, right: 0, height: '52%',
-                  background: 'radial-gradient(ellipse at 50% 100%, rgba(0,20,14,0.58) 0%, transparent 66%)',
+                  background: 'radial-gradient(ellipse at 50% 100%, rgba(2,11,29,0.58) 0%, transparent 66%)',
                   pointerEvents: 'none',
                 }} />
                 <div style={{
@@ -247,7 +246,7 @@ function QMSVisual({ inView }: { inView: boolean }) {
                   }} />
                   <span style={{
                     fontSize: 7.5, fontWeight: 800, letterSpacing: '0.24em',
-                    color: 'rgba(167,243,208,0.44)',
+                    color: 'rgba(191,219,254,0.44)',
                     fontFamily: 'var(--font-montserrat), Montserrat, sans-serif',
                   }}>QMS</span>
                 </div>
@@ -284,15 +283,15 @@ function QMSVisual({ inView }: { inView: boolean }) {
               <div style={{
                 position: 'relative',
                 width: 104, padding: '11px 11px 11px 13px',
-                background: 'linear-gradient(150deg, rgba(2,20,16,0.92) 0%, rgba(0,10,8,0.88) 100%)',
-                border: `1px solid rgba(52,211,153,0.22)`,
+                background: 'linear-gradient(150deg, rgba(2,11,29,0.92) 0%, rgba(0,7,20,0.88) 100%)',
+                border: `1px solid rgba(59,130,246,0.22)`,
                 borderRadius: 12,
                 backdropFilter: 'blur(32px)',
                 WebkitBackdropFilter: 'blur(32px)',
                 boxShadow: [
-                  '0 8px 40px rgba(0,20,14,0.80)',
-                  '0 0 24px rgba(0,169,143,0.14)',
-                  'inset 0 1px 0 rgba(167,243,208,0.22)',
+                  '0 8px 40px rgba(2,11,29,0.80)',
+                  '0 0 24px rgba(37,99,235,0.14)',
+                  'inset 0 1px 0 rgba(191,219,254,0.22)',
                   'inset 0 -1px 0 rgba(0,0,0,0.30)',
                 ].join(', '),
               }}>
@@ -333,10 +332,10 @@ function QMSVisual({ inView }: { inView: boolean }) {
                 }}>{node.name}</div>
                 <div style={{
                   fontSize: 15.5, fontWeight: 800,
-                  color: '#d1fae5',
+                  color: '#dbeafe',
                   letterSpacing: '-0.03em', lineHeight: 1,
                   fontFamily: 'var(--font-montserrat), Montserrat, sans-serif',
-                  textShadow: '0 0 20px rgba(167,243,208,0.35)',
+                  textShadow: '0 0 20px rgba(191,219,254,0.35)',
                 }}>{node.val}</div>
               </div>
             </motion.div>
@@ -363,12 +362,12 @@ export default function CalidadSection() {
   return (
     <section style={{
       position: 'relative', padding: 'clamp(60px,8vw,120px) 0 clamp(80px,10vw,140px)',
-      overflow: 'hidden', background: '#020f0c',
+      overflow: 'hidden', background: '#020b1d',
     }}>
 
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        backgroundImage: 'radial-gradient(circle, rgba(0,169,143,0.062) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(circle, rgba(37,99,235,0.062) 1px, transparent 1px)',
         backgroundSize: '32px 32px',
         maskImage: 'radial-gradient(ellipse 80% 70% at 40% 50%, black 20%, transparent 100%)',
         WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 40% 50%, black 20%, transparent 100%)',
@@ -378,28 +377,28 @@ export default function CalidadSection() {
         position: 'absolute', top: '50%', left: '25%',
         transform: 'translate(-50%, -50%)',
         width: 700, height: 700, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse, rgba(0,169,143,0.16) 0%, rgba(0,169,143,0.06) 38%, transparent 68%)',
+        background: 'radial-gradient(ellipse, rgba(37,99,235,0.16) 0%, rgba(37,99,235,0.06) 38%, transparent 68%)',
       }} />
       <div style={{
         position: 'absolute', top: -140, left: -140, pointerEvents: 'none',
         width: 640, height: 640,
-        background: 'radial-gradient(ellipse, rgba(0,169,143,0.06) 0%, transparent 64%)',
+        background: 'radial-gradient(ellipse, rgba(37,99,235,0.06) 0%, transparent 64%)',
       }} />
       <div style={{
         position: 'absolute', bottom: -80, right: -80, pointerEvents: 'none',
         width: 420, height: 420,
-        background: 'radial-gradient(ellipse, rgba(0,169,143,0.04) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse, rgba(37,99,235,0.04) 0%, transparent 70%)',
       }} />
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-        background: 'linear-gradient(90deg, transparent, rgba(0,169,143,0.20) 30%, rgba(0,169,143,0.32) 50%, rgba(0,169,143,0.20) 70%, transparent)',
+        background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.20) 30%, rgba(37,99,235,0.32) 50%, rgba(37,99,235,0.20) 70%, transparent)',
       }} />
 
       <div ref={ref} style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,40px)' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center" style={{ gap: 64 }}>
 
           {/* Visual — LEFT */}
-          <div className="hidden lg:flex items-center justify-center">
+          <div className="hidden lg:flex flex-col items-center justify-center gap-6">
             <motion.div
               initial={{ opacity: 0, x: -24, filter: 'blur(12px)' }}
               animate={inView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : {}}
@@ -408,26 +407,38 @@ export default function CalidadSection() {
             >
               <QMSVisual inView={inView} />
             </motion.div>
+            <motion.p
+              style={{
+                fontSize: 12, color: 'rgba(147,197,253,0.50)',
+                textAlign: 'center', letterSpacing: '0.04em',
+                fontStyle: 'italic', lineHeight: 1.5,
+              }}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 1.2 }}
+            >
+              Así se ve tu operación de calidad centralizada con un EQMS
+            </motion.p>
           </div>
 
           {/* Text — RIGHT */}
           <div>
             <motion.div
               className="inline-flex items-center gap-2.5 mb-8 px-5 py-2 rounded-full"
-              style={{ background: 'rgba(0,169,143,0.12)', border: '1px solid rgba(0,169,143,0.28)' }}
+              style={{ background: 'rgba(37,99,235,0.12)', border: '1px solid rgba(37,99,235,0.28)' }}
               initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.10, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="relative flex h-2 w-2 flex-shrink-0">
-                <motion.span className="absolute inset-0 rounded-full" style={{ background: '#34d399' }}
+                <motion.span className="absolute inset-0 rounded-full" style={{ background: '#60a5fa' }}
                   animate={{ scale: [1, 2.4], opacity: [0.6, 0] }}
                   transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut' }}
                 />
-                <span className="relative h-2 w-2 rounded-full" style={{ background: '#00A98F' }} />
+                <span className="relative h-2 w-2 rounded-full" style={{ background: '#2563eb' }} />
               </span>
-              <FileCheck size={12} style={{ color: '#6ee7b7' }} />
-              <span style={{ fontSize: 11, fontWeight: 800, color: '#6ee7b7', letterSpacing: '0.18em' }}>
+              <FileCheck size={12} style={{ color: '#93c5fd' }} />
+              <span style={{ fontSize: 11, fontWeight: 800, color: '#93c5fd', letterSpacing: '0.18em' }}>
                 GESTIÓN DE CALIDAD
               </span>
             </motion.div>
@@ -451,7 +462,7 @@ export default function CalidadSection() {
                   fontFamily: 'var(--font-montserrat), Montserrat, sans-serif',
                   fontSize: 'clamp(38px, 4.5vw, 64px)',
                   fontWeight: 900, letterSpacing: '-0.03em', display: 'block',
-                  background: 'linear-gradient(128deg, #00A98F 0%, #34d399 50%, #a7f3d0 100%)',
+                  background: 'linear-gradient(128deg, #2563eb 0%, #60a5fa 50%, #bfdbfe 100%)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                 }}
                 initial={{ opacity: 0, y: 48, filter: 'blur(12px)' }}
@@ -465,7 +476,7 @@ export default function CalidadSection() {
             <motion.div
               style={{
                 height: 1, borderRadius: 9999, maxWidth: 260, marginBottom: 32,
-                background: 'linear-gradient(90deg, #00A98F, #34d399, transparent)',
+                background: 'linear-gradient(90deg, #2563eb, #60a5fa, transparent)',
                 transformOrigin: 'left',
               }}
               initial={{ scaleX: 0, opacity: 0 }}
@@ -494,10 +505,10 @@ export default function CalidadSection() {
               <motion.a href="/software/gestion-de-calidad"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,
-                  background: 'linear-gradient(135deg, #008F78 0%, #00A98F 100%)',
+                  background: 'linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%)',
                   color: '#ffffff', padding: '14px 28px', borderRadius: 9999,
                   fontSize: 15, fontWeight: 700, textDecoration: 'none',
-                  boxShadow: '0 4px 28px rgba(0,169,143,0.44), inset 0 1px 0 rgba(255,255,255,0.12)',
+                  boxShadow: '0 4px 28px rgba(37,99,235,0.44), inset 0 1px 0 rgba(255,255,255,0.12)',
                 }}
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.97 }}
@@ -508,14 +519,14 @@ export default function CalidadSection() {
               <motion.a href="/contacto"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 6,
-                  color: '#6ee7b7', border: '1.5px solid rgba(0,169,143,0.28)',
-                  background: 'rgba(0,169,143,0.06)',
+                  color: '#93c5fd', border: '1.5px solid rgba(37,99,235,0.28)',
+                  background: 'rgba(37,99,235,0.06)',
                   padding: '14px 24px', borderRadius: 9999,
                   fontSize: 15, fontWeight: 600, textDecoration: 'none',
                 }}
                 whileHover={{ x: 5 } as never}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(0,169,143,0.52)' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(0,169,143,0.28)' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(37,99,235,0.52)' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(37,99,235,0.28)' }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
                 Solicitar demo <ChevronRight size={16} strokeWidth={2.5} />
@@ -534,7 +545,7 @@ export default function CalidadSection() {
                 { val: 'GxP',    label: 'GMP · GLP · GCP'},
               ].map((s, i) => (
                 <div key={s.label}
-                  style={i > 0 ? { paddingLeft: 28, marginLeft: 28, borderLeft: '1px solid rgba(0,169,143,0.16)' } : {}}>
+                  style={i > 0 ? { paddingLeft: 28, marginLeft: 28, borderLeft: '1px solid rgba(37,99,235,0.16)' } : {}}>
                   <div style={{
                     fontFamily: 'var(--font-montserrat)', fontWeight: 800,
                     fontSize: 20, color: '#f1f5f9', lineHeight: 1, marginBottom: 4,

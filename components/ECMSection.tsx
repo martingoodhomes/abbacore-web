@@ -403,7 +403,7 @@ export default function ECMSection() {
 
             {/* Headline */}
             <h2 style={{ lineHeight: 1.06, marginBottom: 24 }}>
-              {['Control', 'absoluto'].map((word, i) => (
+              {['Control', 'documental'].map((word, i) => (
                 <motion.span
                   key={word}
                   style={{
@@ -436,7 +436,7 @@ export default function ECMSection() {
                 animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
                 transition={{ duration: 0.75, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
               >
-                documental.
+                absoluto.
               </motion.span>
             </h2>
 

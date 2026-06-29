@@ -1,6 +1,6 @@
 'use client'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { ArrowRight, ChevronRight, ScanLine, FolderOpen, Zap, Smartphone } from 'lucide-react'
+import { ArrowRight, ChevronRight, ScanLine, FolderOpen, Zap, ShieldCheck } from 'lucide-react'
 import Link from 'next/link'
 import { useRef, useEffect, type CSSProperties } from 'react'
 import Image from 'next/image'
@@ -9,7 +9,7 @@ const PILLARS = [
   { id: 'scan', Icon: ScanLine,   label: 'Captura Digital',  color: '#2563eb', href: '/productos/escaneres'                    },
   { id: 'ecm',  Icon: FolderOpen, label: 'ECM Empresarial',  color: '#1d4ed8', href: '/software/gestion-de-contenido-empresarial' },
   { id: 'auto', Icon: Zap,        label: 'Automatización',   color: '#3b82f6', href: '/software/automatizacion-no-code'         },
-  { id: 'crm',  Icon: Smartphone, label: 'CRM & Apps',       color: '#60a5fa', href: '/crm-apps'                               },
+  { id: 'cal',  Icon: ShieldCheck, label: 'EQMS',               color: '#60a5fa', href: '/software/gestion-de-calidad'          },
 ]
 
 const CARD_POSITIONS: CSSProperties[] = [
@@ -509,7 +509,7 @@ export default function Hero() {
               transition={{ duration: 0.65, delay: 0.64, ease: [0.22, 1, 0.36, 1] }}
             >
               Desde la captura documental hasta la automatización inteligente de procesos.
-              La plataforma que transforma operaciones empresariales en Colombia.
+              La plataforma que transforma operaciones empresariales en Latinoamérica.
             </motion.p>
 
             {/* CTA buttons */}

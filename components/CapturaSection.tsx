@@ -167,7 +167,7 @@ export default function CapturaSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.65, delay: 0.52, ease: [0.22, 1, 0.36, 1] }}
             >
-              Motor OCR que transforma cualquier documento físico en datos estructurados listos para auditoría, búsqueda y análisis automatizado — en segundos.
+              Del documento a datos estructurados en segundos. Motores de OCR, ICR, OMR y clasificación automática que permiten extracción, validación y exportación de información lista para auditoría, búsqueda y análisis — sin importar el origen ni el formato.
             </motion.p>
 
             {/* CTAs */}
@@ -178,7 +178,7 @@ export default function CapturaSection() {
               transition={{ duration: 0.65, delay: 0.64, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.a
-                href="/productos/escaneres"
+                href="/software/automatizacion-de-captura"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,
                   background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
@@ -190,7 +190,7 @@ export default function CapturaSection() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 18 }}
               >
-                Ver Motor OCR <ArrowRight size={16} strokeWidth={2.5} />
+                Ver apps de captura <ArrowRight size={16} strokeWidth={2.5} />
               </motion.a>
               <motion.a
                 href="/contacto"
@@ -218,9 +218,9 @@ export default function CapturaSection() {
               transition={{ duration: 0.6, delay: 0.88 }}
             >
               {[
-                { val: '99.8%',   label: 'Precisión OCR' },
-                { val: '120 ppm', label: 'Velocidad'     },
-                { val: '50+',     label: 'Formatos'      },
+                { val: '99.8%', label: 'Precisión de extracción' },
+                { val: '80%',   label: 'Menos indexación'      },
+                { val: 'Cero',  label: 'Redigitación manual'   },
               ].map((s, i) => (
                 <div
                   key={s.label}

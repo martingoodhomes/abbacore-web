@@ -142,7 +142,7 @@ export default function AutomatizacionCaptura() {
       <main>
         <PageHero
           title="Automatización de Captura"
-          subtitle="Del papel al dato estructurado en segundos — sin intervención manual, con precisión de nivel industrial."
+          subtitle="De cualquier fuente papel, correo o archivo digital a la imagen nítida y al dato estructurado, todo en segundos. Captura de alta fidelidad, cero ingreso manual y precisión industrial en cada documento."
           breadcrumbs={[{ label: 'Software y Soluciones', href: '/software/automatizacion-de-captura' }, { label: 'Automatización de Captura' }]}
         />
 
@@ -154,7 +154,7 @@ export default function AutomatizacionCaptura() {
             pointerEvents: 'none',
           }} />
 
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
+          <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: '0 clamp(16px,4vw,40px)' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               {solutions.map((s, i) => (
                 <motion.div
@@ -164,12 +164,12 @@ export default function AutomatizacionCaptura() {
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -2, boxShadow: `0 8px 32px rgba(${s.rgb},0.10), inset 0 0 0 1px rgba(${s.rgb},0.16)` }}
+                  className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr]"
                   style={{
                     background: '#ffffff', borderRadius: 18,
                     border: '1px solid rgba(37,99,235,0.09)',
-                    padding: '32px', display: 'grid',
-                    gridTemplateColumns: '1fr 1.5fr',
-                    gap: 40, alignItems: 'start',
+                    padding: 'clamp(20px,3vw,32px)',
+                    gap: 'clamp(20px,3vw,40px)', alignItems: 'start',
                     boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
                     transition: 'box-shadow 0.22s',
                   }}

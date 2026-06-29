@@ -13,9 +13,10 @@ interface Product extends ModalProduct {
   spec: string
 }
 
-const KODAK  = { name: 'Kodak Alaris', color: '#CC0000' }
-const EPSON  = { name: 'Epson',        color: '#2563eb' }
-const RICOH  = { name: 'Ricoh',        color: '#A0153E' }
+const KODAK   = { name: 'Kodak Alaris', color: '#CC0000' }
+const EPSON   = { name: 'Epson',        color: '#2563eb' }
+const RICOH   = { name: 'Ricoh',        color: '#A0153E' }
+const BROTHER = { name: 'Brother',      color: '#0072CE' }
 
 const tabs = [
   {
@@ -42,7 +43,7 @@ const tabs = [
   },
   {
     id: 'grupo-de-trabajo', label: 'Grupo de Trabajo',
-    partners: [KODAK, RICOH, EPSON],
+    partners: [KODAK, RICOH, EPSON, BROTHER],
     products: [
       {
         name: 'Kodak Alaris S2070', brand: 'Kodak Alaris', brandColor: '#CC0000',
@@ -139,6 +140,30 @@ const tabs = [
         Icon: ScanLine,
         description: 'Escáner A3 de red para grupos de trabajo que manejan formatos grandes. Conectividad LAN integrada para compartir el escáner en red y escanear directamente a carpetas compartidas.',
         features: ['65 ppm · Formato A3', 'LAN integrada (sin PC dedicada)', 'Ciclo diario 10,000 páginas', 'Resolución 600 dpi', 'Dúplex automático', 'Compatible con TWAIN/ISIS'],
+      },
+      {
+        name: 'Brother ADS-4300N', brand: 'Brother', brandColor: '#0072CE',
+        spec: '40 ppm / 80 ipm · LAN · ADF 50 hojas',
+        image: '/products/scanners/brother-ads-4300n.jpg',
+        Icon: ScanLine,
+        description: 'Escáner de red cableado de alta velocidad para grupos de trabajo. Con 40 ppm, ADF de 50 hojas y conectividad LAN, escanea directamente a SharePoint, OneDrive, FTP y más — sin PC dedicada.',
+        features: ['40 ppm / 80 ipm · Dúplex automático', 'ADF 50 hojas · Formato A4', 'LAN integrada (sin PC dedicada)', 'Escaneo directo a nube y carpetas de red', 'Resolución óptica 600 dpi', 'Ciclo diario 5,000 páginas'],
+      },
+      {
+        name: 'Brother ADS-4700W', brand: 'Brother', brandColor: '#0072CE',
+        spec: '40 ppm / 80 ipm · Wi-Fi · Pantalla táctil',
+        image: '/products/scanners/brother-ads-4700w.jpg',
+        Icon: ScanLine,
+        description: 'Escáner inalámbrico con pantalla táctil a color de 3.5" para operación autónoma. Escanea a email, SharePoint, OneDrive, FTP y más — vía Wi-Fi, sin depender de un PC.',
+        features: ['40 ppm / 80 ipm · Dúplex automático', 'Wi-Fi + LAN + USB · ADF 50 hojas', 'Pantalla táctil LCD 3.5" a color', 'Escaneo directo a nube, USB y correo', 'Resolución óptica 600 dpi', 'Ciclo diario 5,000 páginas'],
+      },
+      {
+        name: 'Brother ADS-4900W', brand: 'Brother', brandColor: '#0072CE',
+        spec: '60 ppm / 120 ipm · Wi-Fi · ADF 80 hojas',
+        image: '/products/scanners/brother-ads-4900w.jpg',
+        Icon: ScanLine,
+        description: 'El escáner de grupo de trabajo más potente de Brother. Con 60 ppm, ADF de 80 hojas, pantalla táctil de 4.5" y conectividad completa, es la solución ideal para departamentos de alto volumen.',
+        features: ['60 ppm / 120 ipm · Dúplex automático', 'ADF 80 hojas · Formato A4', 'Wi-Fi + LAN + USB · Pantalla táctil 4.5"', 'NFC para escaneo desde móvil', 'Resolución óptica 600 dpi', 'Ciclo diario 9,000 páginas'],
       },
     ],
   },
