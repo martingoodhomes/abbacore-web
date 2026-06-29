@@ -16,7 +16,7 @@ const company = [
   { label: 'Partners',  href: '/nosotros' },
 ]
 const contact = [
-  { Icon: Mail,          label: 'andres.casasbuenas@abba-core.com', href: 'mailto:andres.casasbuenas@abba-core.com' },
+  { Icon: Mail,          label: 'info@abba-core.com',              href: 'mailto:info@abba-core.com' },
   { Icon: MessageCircle, label: '+57 316 538 3437',                 href: 'https://wa.me/573165383437' },
   { Icon: Phone,         label: '+57 301 200 5752',                 href: 'tel:+573012005752' },
 ]

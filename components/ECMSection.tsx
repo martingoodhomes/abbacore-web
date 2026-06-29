@@ -513,9 +513,10 @@ export default function ECMSection() {
               transition={{ duration: 0.6, delay: 0.88 }}
             >
               {[
-                { val: '100%', label: 'Trazabilidad' },
-                { val: '∞',    label: 'Versiones'    },
-                { val: '3.2k+', label: 'Documentos'  },
+                { val: '100%', label: 'Trazabilidad'             },
+                { val: '<30s', label: 'Recuperando documentos'  },
+                { val: '70%',  label: 'Menos costos operativos' },
+                { val: '100%', label: 'Auditable'               },
               ].map((s, i) => (
                 <div
                   key={s.label}
