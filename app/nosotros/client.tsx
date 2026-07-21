@@ -30,7 +30,7 @@ const differentiators = [
   {
     Icon: Shield,
     title: 'Seguridad de nivel bancario',
-    description: 'Cifrado AES-256, autenticación multifactor y cumplimiento con normativas colombianas de protección de datos.',
+    description: 'Cifrado AES-256, autenticación multifactor y cumplimiento con normativas de protección de datos en Latinoamérica.',
   },
   {
     Icon: TrendingUp,
@@ -40,7 +40,7 @@ const differentiators = [
   {
     Icon: Users,
     title: 'Equipo especializado',
-    description: 'Más de 10 años de experiencia en digitalización, gestión documental y automatización en el mercado colombiano.',
+    description: 'Más de 10 años de experiencia en digitalización, gestión documental y automatización en el mercado latinoamericano.',
   },
   {
     Icon: Award,
@@ -50,10 +50,9 @@ const differentiators = [
 ]
 
 const stats = [
-  { value: '10+', label: 'Años de experiencia' },
-  { value: '500+', label: 'Empresas atendidas' },
-  { value: '99.8%', label: 'Satisfacción de clientes' },
-  { value: '24h', label: 'Tiempo de respuesta' },
+  { value: '10+',   label: 'Años de experiencia' },
+  { value: '99.8%', label: 'Precisión de captura' },
+  { value: 'LATAM', label: 'Presencia regional' },
 ]
 
 const LIGHT_GRID: React.CSSProperties = {
@@ -127,7 +126,7 @@ export default function NosotrosPage() {
                   marginBottom: 28,
                 }}
               >
-                Transformar la operación documental de Colombia.
+                Transformar la operación documental de Latinoamérica.
               </motion.h2>
 
               <motion.p
@@ -349,7 +348,7 @@ export default function NosotrosPage() {
           <div ref={statsRef} style={{
             position: 'relative', zIndex: 1,
             maxWidth: 1200, margin: '0 auto', padding: '0 40px',
-            display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1,
+            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1,
           }}>
             {stats.map((s, i) => (
               <motion.div
