@@ -62,7 +62,7 @@ export default function AutomatizacionNoCodePage() {
             pointerEvents: 'none',
           }} />
 
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
+          <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: '0 clamp(16px,4vw,40px)' }}>
 
             {/* Kintone hero card — clickable */}
             <motion.div
@@ -74,12 +74,12 @@ export default function AutomatizacionNoCodePage() {
               style={{
                 background: '#f8faff', borderRadius: 24,
                 border: '1px solid rgba(37,99,235,0.10)',
-                padding: '48px', marginBottom: 48,
+                padding: 'clamp(20px,4vw,48px)', marginBottom: 48,
                 boxShadow: '0 4px 24px rgba(37,99,235,0.06)',
                 transition: 'box-shadow 0.22s',
               }}
             >
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'start' }}>
+              <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 'clamp(24px,4vw,48px)', alignItems: 'start' }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20, flexWrap: 'wrap' as const }}>
                     <KintoneLogo />
@@ -172,7 +172,7 @@ export default function AutomatizacionNoCodePage() {
               }}>
                 Casos de uso frecuentes
               </p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 16 }}>
                 {useCases.map((u, i) => (
                   <motion.div
                     key={u.title}
@@ -216,10 +216,9 @@ export default function AutomatizacionNoCodePage() {
             background: 'radial-gradient(ellipse, rgba(37,99,235,0.10) 0%, transparent 70%)',
             pointerEvents: 'none',
           }} />
-          <div style={{
+          <div className="grid grid-cols-1 sm:grid-cols-3" style={{
             position: 'relative', zIndex: 1,
-            maxWidth: 1200, margin: '0 auto', padding: '0 40px',
-            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1,
+            maxWidth: 1200, margin: '0 auto', padding: '0 clamp(16px,4vw,40px)',
           }}>
             {[
               { value: '0',    label: 'Líneas de código necesarias' },

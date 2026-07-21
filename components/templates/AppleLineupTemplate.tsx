@@ -67,7 +67,7 @@ export default function AppleLineupTemplate({
           }} />
 
           {/* Section header */}
-          <div ref={ref} style={{ maxWidth: 1200, margin: '0 auto', padding: '0 40px', marginBottom: 48 }}>
+          <div ref={ref} style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(16px,4vw,40px)', marginBottom: 48 }}>
             <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24 }}>
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
